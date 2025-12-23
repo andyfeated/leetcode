@@ -30,6 +30,7 @@ function productOfArrayExceptSelf(nums: number[]) {
   const suffixes: number[] = new Array(nums.length)
 
   // create prefixes and suffixes so that i - 1 or i + 1 is already calculated when accessed
+  // by the main nums[] loop
   for (let i = 0; i < nums.length; i++) {
     const prefix = i === 0 ? nums[i] : nums[i] * prefixes[i - 1]
     prefixes[i] = prefix
