@@ -26,40 +26,42 @@
 */
 
 function productOfArrayExceptSelf(nums: number[]) {
-  const prefixes: number[] = new Array(nums.length)
-  const suffixes: number[] = new Array(nums.length)
+  const prefixes: number[] = new Array(nums.length);
+  const suffixes: number[] = new Array(nums.length);
 
   // create prefixes and suffixes so that i - 1 or i + 1 is already calculated when accessed
   // by the main nums[] loop
   for (let i = 0; i < nums.length; i++) {
-    const prefix = i === 0 ? nums[i] : nums[i] * prefixes[i - 1]
-    prefixes[i] = prefix
+    const prefix = i === 0 ? nums[i] : nums[i] * prefixes[i - 1];
+    prefixes[i] = prefix;
   }
 
   for (let i = nums.length - 1; i >= 0; i--) {
-    const suffix = i === nums.length - 1 ? nums[i] : nums[i] * suffixes[i + 1]
-    suffixes[i] = suffix
-  } 
+    const suffix = i === nums.length - 1 ? nums[i] : nums[i] * suffixes[i + 1];
+    suffixes[i] = suffix;
+  }
 
   // we can reuse nums instead of making a new const since it's not relevant anyway
   for (let i = 0; i < nums.length; i++) {
     if (i === 0) {
-      nums[i] = suffixes[i + 1]
+      nums[i] = suffixes[i + 1];
       continue;
     }
 
     if (i === nums.length - 1) {
-      nums[i] = prefixes[i - 1]
+      nums[i] = prefixes[i - 1];
       continue;
     }
 
-    nums[i] = prefixes[i - 1] * suffixes[i + 1]
+    nums[i] = prefixes[i - 1] * suffixes[i + 1];
   }
 
-  return nums
+  return nums;
 }
 
-const input = [-1, 1, 0, -3, 3]
+const input = [-1, 1, 0, -3, 3];
 
-const output = productOfArrayExceptSelf(input)
-console.log(output)
+const output = productOfArrayExceptSelf(input);
+console.log(output);
+
+export {};

@@ -28,39 +28,39 @@
     - We just need to loop through the whole bucket to find it
 **/
 
-
 const topKFreq = (nums: number[]) => {
   // instantiate an array of array so that push func will not be undefined
-  const bucket: number[][] = Array.from({ length: nums.length}, () => [])
-  const frequencyCounter = new Map<number, number>()
+  const bucket: number[][] = Array.from({ length: nums.length }, () => []);
+  const frequencyCounter = new Map<number, number>();
 
   for (let i = 0; i < nums.length; i++) {
-    const currentFrequency = frequencyCounter.get(nums[i])
+    const currentFrequency = frequencyCounter.get(nums[i]);
 
     if (currentFrequency) {
-      // need to save frequency in order to know 
+      // need to save frequency in order to know
       // which bucket/index to add the value
-      frequencyCounter.set(nums[i], currentFrequency + 1)
-      bucket[currentFrequency].push(nums[i])
+      frequencyCounter.set(nums[i], currentFrequency + 1);
+      bucket[currentFrequency].push(nums[i]);
     } else {
-      frequencyCounter.set(nums[i], 1)
-      bucket[0].push(nums[i])
+      frequencyCounter.set(nums[i], 1);
+      bucket[0].push(nums[i]);
     }
   }
 
-  for (let i = bucket.length - 1; i >= 0; i-- ) {
+  for (let i = bucket.length - 1; i >= 0; i--) {
     if (bucket[i].length === k) {
       // loop through the list and match k with bucket
-      return bucket[i]
+      return bucket[i];
     }
   }
-  
-  return []
-}
 
-const nums = [1, 1, 1, 2, 2, 3]
-const k = 3
+  return [];
+};
 
-const answer = topKFreq(nums)
-console.log(answer)
+const nums = [1, 1, 1, 2, 2, 3];
+const k = 3;
 
+const answer = topKFreq(nums);
+console.log(answer);
+
+export {};
