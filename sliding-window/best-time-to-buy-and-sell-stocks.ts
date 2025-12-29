@@ -4,7 +4,6 @@ function maxProfit(prices: number[]) {
   let j = i + 1;
 
   while (j < prices.length) {
-    console.log(j, prices[j]);
     if (prices[i] > prices[j]) {
       i = j;
     } else {
